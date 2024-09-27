@@ -13,12 +13,13 @@ const io = new Server(server, {
     }
 });
 
-// Middleware to use CORS
+
 app.use(cors()); 
+
+
 io.on('connection', (socket) => {
     console.log(`User connected: ${socket.id}`);
 
-    // Listen for incoming messages
     socket.on('sendMessage', (data) => {
         socket.broadcast.emit('message', data);
     });
@@ -28,7 +29,9 @@ io.on('connection', (socket) => {
     });
 });
 
+ 
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
+ 

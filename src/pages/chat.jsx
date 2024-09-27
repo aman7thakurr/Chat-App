@@ -43,21 +43,22 @@ const Chat = () => {
 
     return (
         <div className='flex flex-col h-screen bg-gray-100'>
-            {/* Display messages */}
+            
             <div className='flex-1 overflow-y-auto p-4'>
                 {messages.map((msg, index) => (
-                <>    <div key={index} className={`mt-4 p-3 rounded-lg shadow-md ${msg.id === socketRef.current.id ? 'bg-blue-500 text-white self-end' : 'bg-gray-200 text-black self-start'}`}>
+                <>    <div key={index} className={`mt-4 p-1 rounded-lg shadow-md whitespace-pre-wrap break-words overflow-hidden h-auto ${msg.id === socketRef.current.id ? 'bg-blue-500 text-white self-end' : 'bg-gray-200 text-black self-start'}`}>
+                     
                         <strong>{msg.id === socketRef.current.id ? 'You' : 'Friend'}:</strong> {msg.message}
-                       
+                        <p className='text-gray-500 mt-1  text-right'>{formatTime(msg.time)}</p>
                     </div>
-                     <p className='text-gray-500 mt-1'>{formatTime(msg.time)}</p>
+                    
                     </>
                 ))}
                 <div ref={messagesEndRef} />
             </div>
 
-            {/* Input field for new messages */}
-            <div className='p-4 bg-white border-t text-black border-gray-200'>
+           
+            <div className='p-4 bg-white border-t flex flex-col items-center text-black border-gray-200'>
                 <input
                     type="text"
                     value={currentMessage}
@@ -69,7 +70,7 @@ const Chat = () => {
                 <button
                     onClick={sendMessage}
                     disabled={!currentMessage.trim()}
-                    className='ml-2 px-4 py-2 text-white bg-blue-500 rounded-lg disabled:opacity-50'
+                    className='ml-2 px-4 py-2 text-white mt-2 bg-blue-500 rounded-lg disabled:opacity-50 w-[90%]'
                 >
                     Send
                 </button>
