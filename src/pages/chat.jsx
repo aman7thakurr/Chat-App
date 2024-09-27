@@ -10,7 +10,7 @@ const Chat = () => {
     const socketRef = useRef();
 
     useEffect(() => {
-        socketRef.current = io('http://localhost:3001');
+        socketRef.current = io('https://chat-app-yl81.onrender.com');
 
         socketRef.current.on('message', (message) => {
             setMessages((prevMessages) => [...prevMessages, message]);
